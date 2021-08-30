@@ -315,6 +315,8 @@ Error message and password prompt
 
 <li>Index</li>
 
+<li>MacOS 启动 tun</li>
+
 </ul>
 </p>
 
@@ -10768,8 +10770,8 @@ $:/config/ViewToolbarButtons/Visibility/$(listItem)$
 &lt;/$reveal&gt;
 &lt;/div&gt;</pre>
 </div>
-<div created="20210830112052836" modified="20210830112141691" title="$:/DefaultTiddlers">
-<pre>[[Index]]
+<div created="20210830112052836" modified="20210830112253194" title="$:/DefaultTiddlers">
+<pre>Index
 </pre>
 </div>
 <div created="20210830111601553" modified="20210830111602903" title="$:/GitHub/Filename">
@@ -15558,13 +15560,13 @@ exports.context = contextWidget;
 <div created="20210830111355727" modified="20210830111828106" title="$:/state/tab-2065006209">
 <pre>$:/core/ui/ControlPanel/Saving/GitLab</pre>
 </div>
-<div created="20210830111823070" modified="20210830112208190" title="$:/state/tab/sidebar--595412856">
-<pre>$:/core/ui/SideBar/Recent</pre>
+<div created="20210830111823070" modified="20210830112257077" title="$:/state/tab/sidebar--595412856">
+<pre>$:/core/ui/SideBar/Open</pre>
 </div>
 <div title="$:/status/RequireReloadDueToPluginChange">
 <pre>no</pre>
 </div>
-<div created="20210830112158050" list="$:/ControlPanel $:/DefaultTiddlers Index" modified="20210830112205760" title="$:/StoryList">
+<div created="20210830112158050" list="[[MacOS 启动 tun]] Index" modified="20210830112205760" title="$:/StoryList">
 <pre></pre>
 </div>
 <div created="20200519141000553" list="$:/.giffmex/Buttons/more-tiddler-edit-actions $:/core/ui/Buttons/delete $:/core/ui/Buttons/cancel $:/core/ui/Buttons/save" modified="20200521145647980" tags="$:/giffmex/bigeditarea $:/giffmex/stroll" title="$:/tags/EditToolbar">
@@ -15933,6 +15935,81 @@ exports.context = contextWidget;
 </div>
 <div created="20210830112108969" modified="20210830112237457" tags="Home" title="Index" type="text/vnd.tiddlywiki">
 <pre>这里是 `Dio` 的个人Wiki</pre>
+</div>
+<div created="20210830112303025" modified="20210830112353970" tags="[[OS X]] Network" title="MacOS 启动 tun" type="text/vnd.tiddlywiki">
+<pre>```C
+#include &lt;sys/types.h&gt;
+#include &lt;sys/ioctl.h&gt;
+#include &lt;sys/socket.h&gt;
+#include &lt;sys/sys_domain.h&gt;
+#include &lt;sys/kern_control.h&gt;
+#include &lt;net/if_utun.h&gt;
+#include &lt;errno.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+#include &lt;syslog.h&gt;
+#include &lt;unistd.h&gt;
+#include &lt;net/if.h&gt;
+#include &lt;stdlib.h&gt;
+
+int tun(int mtu) {
+	struct sockaddr_ctl addr;
+	struct ctl_info info;
+	struct ifreq ifr;
+	int fd;
+
+	bzero(&amp;info, sizeof(info));
+	if (!strlcpy(info.ctl_name, UTUN_CONTROL_NAME, MAX_KCTL_NAME)) {
+		fprintf(stderr,&quot;UTUN_CONTROL_NAME too long&quot;);
+		return -1;
+	}
+	fd = socket(PF_SYSTEM, SOCK_DGRAM, SYSPROTO_CONTROL);
+ 	
+	if (fd == -1) {
+		perror (&quot;socket(SYSPROTO_CONTROL)&quot;);
+		return -1;
+	}
+
+	if (ioctl(fd, CTLIOCGINFO, &amp;info) == -1) {
+		perror (&quot;ioctl(CTLIOCGINFO)&quot;);
+		close(fd);
+		return -1;
+	}
+
+	addr.sc_id = info.ctl_id;
+	addr.sc_len = sizeof(addr);
+	addr.sc_family = AF_SYSTEM;
+	addr.ss_sysaddr = AF_SYS_CONTROL;
+	addr.sc_unit = 0;
+
+	if (connect(fd, (struct sockaddr*)&amp;addr, sizeof(addr)) != 0) {
+		close(fd);
+		return -1;
+	}
+	
+	ifr.ifr_addr.sa_family = AF_INET;
+	strncpy(ifr.ifr_name, &quot;utun2&quot;, sizeof(ifr.ifr_name));
+	ifr.ifr_mtu = mtu;
+	ioctl(fd, SIOCSIFMTU, (caddr_t)&amp;ifr);
+	int ret = 
+	if (!ret) {
+		fprintf(stderr, &quot;error %d\n&quot;, ret);
+		close(fd);
+		return -1;
+	}
+
+	return fd;
+}
+
+int getName(char* name, int fd) {
+	socklen_t len = sizeof(name);
+	if (getsockopt(fd, SYSPROTO_CONTROL, UTUN_OPT_IFNAME, name, &amp;len) != 0) {
+		close(fd);
+		return -1;
+	}
+	return 0;
+}
+```</pre>
 </div>
 
 
