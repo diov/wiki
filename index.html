@@ -357,8 +357,6 @@ Error message and password prompt
 
 <li>MacOS tun 操作</li>
 
-<li>Mongo 单机事务</li>
-
 </ul>
 </p>
 
@@ -12871,7 +12869,7 @@ exports.context = contextWidget;
 <div bag="default" revision="1" title="$:/status/UserName">
 <pre></pre>
 </div>
-<div created="20210830125000730" list="Backend [[iOS/OS X]] Index" modified="20210830131217133" title="$:/StoryList">
+<div created="20210830125000730" list="Backend [[iOS/OS X]] Index" modified="20210830131303198" title="$:/StoryList">
 <pre></pre>
 </div>
 <div created="20200519141000553" list="$:/.giffmex/Buttons/more-tiddler-edit-actions $:/core/ui/Buttons/delete $:/core/ui/Buttons/cancel $:/core/ui/Buttons/save" modified="20200521145647980" tags="$:/giffmex/bigeditarea $:/giffmex/stroll" title="$:/tags/EditToolbar">
@@ -13081,31 +13079,6 @@ int tun(int mtu) {
 
   return 0;
 }
-```</pre>
-</div>
-<div created="20210830123909624" modified="20210830123931841" tags="Backend Database Mongo" title="Mongo 单机事务">
-<pre>* 修改 mongo.conf
-
-```
-systemLog:
-  destination: file
-  path: /usr/local/var/log/mongodb/mongo.log
-  logAppend: true
-storage:
-  dbPath: /usr/local/var/mongodb
-net:
-  bindIp: 127.0.0.1
-
-# 就是添加下方的内容
-replication:
-  replSetName: rs0 # 这个 replSetName 必须所有节点都得一致
-```
-
-* 启动 mongo
-```bash
-rs.initiate()
-
-rs.secondaryOk()
 ```</pre>
 </div>
 
