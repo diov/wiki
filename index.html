@@ -399,8 +399,6 @@ Error message and password prompt
 
 <li>The TiddlyWiki layout</li>
 
-<li>Troubleshooting</li>
-
 </ul>
 </p>
 
@@ -16047,7 +16045,7 @@ exports.context = contextWidget;
 <div title="$:/status/RequireReloadDueToPluginChange">
 <pre>no</pre>
 </div>
-<div created="20210830103829184" list="Home" modified="20210830104031638" title="$:/StoryList">
+<div created="20210830103829184" list="Home" modified="20210830104036804" title="$:/StoryList">
 <pre></pre>
 </div>
 <div created="20200519141000553" list="$:/.giffmex/Buttons/more-tiddler-edit-actions $:/core/ui/Buttons/delete $:/core/ui/Buttons/cancel $:/core/ui/Buttons/save" modified="20200521145647980" tags="$:/giffmex/bigeditarea $:/giffmex/stroll" title="$:/tags/EditToolbar">
@@ -16533,64 +16531,6 @@ Each app has its strengths and drawbacks. Here is a general comparison:
 &lt;span class=&quot;bluebox&quot;&gt;
 
 ''Activity 1: ''Close the sidebar by clicking the &lt;&lt;icon {{$:/core/images/chevron-right}} &quot;&quot;&gt;&gt; icon in the top right corner. Click it again to re-open it.
-
-&lt;/span&gt;</pre>
-</div>
-<div created="20200516151401558" modified="20200606180608575" tags="$:/giffmex/tutorials" title="Troubleshooting">
-<pre>!Autocomplete problems
-
-*If you downloaded Stroll between 5-21-2020 and 6-3-2020, your autocomplete probably isn't working. I fixed the problem, and you can drag [[this link|$:/config/EditorTypeMappings/text/vnd.tiddlywiki]] into your file to fix it. I accidentally forgot to tag this tiddler as ~$:/giffmex/stroll and ~$:/giffmex/blinks when I retagged the Stroll tiddlers on 5-21. Sorry! But it is fixed now.
-*For autocomplete with Markdown, see the section on Markdown below.
-
-!iOS
-
-''I use iOS and want to disable the link autocomplete!''
-
-&lt;span class=&quot;indent1&quot;&gt;
-
-Unfortunately the autocomplete plugin (called the edit-comptext plugin) does not work in iOS and other contexts where one can't use the down arrow key.
-
-To disable it, delete the following tiddler:  [[$:/config/EditorTypeMappings/text/vnd.tiddlywiki]] . This will return it to its default setting.
-
-&lt;/span&gt;
-
-!Markdown
-
-''I have the markdown plugin, but autocompletion for linking doesn't work in my Markdown tiddlers!''
-
-&lt;span class=&quot;indent1&quot;&gt;
-
-The autocompletion of links with double brackets `[[link]]` is controlled by the comptext plugin. Users of Markdown have noticed that they can't use the autocomplete in their Markdown tiddlers. To make autocompletion compatible with formatting in Markdown tiddlers, create a tiddler with the title `$:/config/EditorTypeMappings/text/x-markdown` and put this in the text field: `comptext`
-
-Then, to enable the `[[]]` format for a link, open the following shadow tiddler: $:/config/markdown/renderWikiTextPragma and replace the text with: `\rules only html image macrocallinline syslink transcludeinline wikilink filteredtranscludeblock macrocallblock transcludeblock prettylink`
-
-&lt;/span&gt;
-
-
-!~TiddlyMap
-
-We ''do not'' recommend using ~TiddlyMap. We have found too many incompatibilities. I will not help anyone else who comes to me with problems related to it. That said, here are solutions to two issues:
-
-''I get an error when doubleclicking a node while in fullscreen mode in ~TiddlyMap!''
-
-You will need to stop using fullscreen mode, which, for now, is incompatible for some reason with Stroll. But there is an easy workaround:
-
-# Install the link-to-tabs plugin from https://wikilabs.github.io/editions/link-to-tabs/ and save and refresh.
-# Click the link icon over the Map tab (visible on clicking that tab). This will open ~TiddlyMap as a tiddler, and doubleclicking a node will open the tidder //in the story river//. 
-
-''I installed ~TiddlyMap and now the columns are all messed up in two column mode!''
-
-&lt;span class=&quot;indent1&quot;&gt;
-
-Here is a hack to help you switch back and forth between wide and narrow sidebars: In the tiddler  ''~$:/plugins/felixhayashi/tiddlymap/hook/editor'' of your file, on a new line right after the first line (`\define width() calc(100% - 15px)`), insert the following:
-
-```
-\define lingo-base() $:/language/ThemeTweaks/
-
-&lt;$select tiddler=&quot;$:/themes/tiddlywiki/vanilla/options/sidebarlayout&quot;&gt;&lt;option value=&quot;fixed-fluid&quot;&gt;&lt;&lt;lingo Options/SidebarLayout/Fixed-Fluid&gt;&gt;&lt;/option&gt;&lt;option value=&quot;fluid-fixed&quot;&gt;&lt;&lt;lingo Options/SidebarLayout/Fluid-Fixed&gt;&gt;&lt;/option&gt;&lt;/$select&gt;
-```
-
-Now your 'Map' tab will have a dropdown at the top to change the columns/sidebar relationship between 'fluid-fixed' and 'fixed-fluid'.
 
 &lt;/span&gt;</pre>
 </div>
