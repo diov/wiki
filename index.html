@@ -349,6 +349,8 @@ Error message and password prompt
 
 <li>Index</li>
 
+<li>MacOS tun 操作</li>
+
 <li>Mongo 单机事务</li>
 
 <li>OS X/iOS</li>
@@ -12862,7 +12864,7 @@ exports.context = contextWidget;
 <div bag="default" revision="1" title="$:/status/UserName">
 <pre></pre>
 </div>
-<div created="20210830125000730" list="[[OS X/iOS]] Index" modified="20210830131114863" title="$:/StoryList">
+<div created="20210830125000730" list="[[OS X/iOS]] [[MacOS tun 操作]] Index" modified="20210830131114863" title="$:/StoryList">
 <pre></pre>
 </div>
 <div created="20200519141000553" list="$:/.giffmex/Buttons/more-tiddler-edit-actions $:/core/ui/Buttons/delete $:/core/ui/Buttons/cancel $:/core/ui/Buttons/save" modified="20200521145647980" tags="$:/giffmex/bigeditarea $:/giffmex/stroll" title="$:/tags/EditToolbar">
@@ -13000,6 +13002,73 @@ exports.context = contextWidget;
 </div>
 <div created="20210830123759085" modified="20210830123800157" title="Index">
 <pre>这里是 `Dio` 的个人Wiki</pre>
+</div>
+<div created="20210830131126334" modified="20210830131148340" tags="[[OS X]] Network" title="MacOS tun 操作">
+<pre>[[OS X/iOS]]
+
+```C
+#include &lt;sys/ioctl.h&gt;
+#include &lt;sys/socket.h&gt;
+#include &lt;sys/sys_domain.h&gt;
+#include &lt;sys/kern_control.h&gt;
+#include &lt;net/if_utun.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+#include &lt;unistd.h&gt;
+#include &lt;net/if.h&gt;
+
+int tun(int mtu) {
+  int fd;
+
+  struct ctl_info info;
+  bzero(&amp;info, sizeof(info));
+  if (!strlcpy(info.ctl_name, UTUN_CONTROL_NAME, MAX_KCTL_NAME)) {
+      return -1;
+  }
+  fd = socket(PF_SYSTEM, SOCK_DGRAM, SYSPROTO_CONTROL);
+  if (fd == -1) {
+      return -1;
+  }
+  if (ioctl(fd, CTLIOCGINFO, &amp;info) == -1) {
+      close(fd);
+      return -1;
+  }
+
+	struct sockaddr_ctl addr;
+	addr.sc_id = info.ctl_id;
+  addr.sc_len = sizeof(addr);
+  addr.sc_family = AF_SYSTEM;
+  addr.ss_sysaddr = AF_SYS_CONTROL;
+  addr.sc_unit = 0;
+
+  if (connect(fd, (struct sockaddr*)&amp;addr, sizeof(addr)) == -1) {
+      close(fd);
+      return -1;
+  }
+
+  char name[16] = {0};
+  socklen_t len = sizeof(name);
+  if (getsockopt(fd, SYSPROTO_CONTROL, UTUN_OPT_IFNAME, name, &amp;len) == -1) {
+      close(fd);
+      return -1;
+  }
+
+  struct ifreq ifr;
+	ifr.ifr_addr.sa_family = AF_INET;
+  strncpy(ifr.ifr_name, name, sizeof(ifr.ifr_name));
+  ifr.ifr_mtu = mtu;
+  if (ioctl(fd, SIOCSIFMTU, (caddr_t)&amp;ifr) == -1) {
+      close(fd);
+      return -1;
+  };
+
+  tun-&gt;fd = fd;
+  tun-&gt;mtu = mtu;
+  tun-&gt;name = name;
+
+  return 0;
+}
+```</pre>
 </div>
 <div created="20210830123909624" modified="20210830123931841" tags="Backend Database Mongo" title="Mongo 单机事务">
 <pre>* 修改 mongo.conf
