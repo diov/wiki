@@ -221,6 +221,10 @@ Error message and password prompt
 
 <li>$:/core/ui/ControlPanel/StoryView</li>
 
+<li>$:/core/ui/SideBar/More</li>
+
+<li>$:/core/ui/SideBar/Tools</li>
+
 <li>$:/core/ui/ViewTemplate/title</li>
 
 <li>$:/DefaultTiddlers</li>
@@ -403,7 +407,7 @@ Error message and password prompt
 <div created="20200502183010768" modified="20201231113403988" tags="$:/giffmex/stroll" title="$:/_sq/Stories/config/Story2-storyview">
 <pre>classic</pre>
 </div>
-<div bag="default" created="20170615140314952" list="$:/ControlPanel" modified="20210830103419500" revision="8" tags="$:/giffmex/stroll" title="$:/_sq/Stories/Story2StoryList" type="text/vnd.tiddlywiki">
+<div bag="default" created="20170615140314952" list="" modified="20210830103419500" revision="8" tags="$:/giffmex/stroll" title="$:/_sq/Stories/Story2StoryList" type="text/vnd.tiddlywiki">
 <pre></pre>
 </div>
 <div created="20191010123116672" modified="20200714164402812" tags="$:/tags/Stylesheet $:/giffmex/stroll $:/giffmex/blinks" title="$:/.giffmex/.Stylesheet4Stroll" type="text/css">
@@ -559,7 +563,7 @@ Grab snippets: e.g., `tiddlywiki --rendertiddlers [!is[system]] $:/core/template
 <div created="20200519150023135" modified="20200521203302683" tags="$:/giffmex/bigeditarea $:/giffmex/stroll" title="$:/.giffmex/language/toolbar">
 <pre>toolbar</pre>
 </div>
-<div caption="{{$:/core/images/options-button}}" created="20200502183545567" modified="20200808143759688" tags="$:/tags/SideBar $:/giffmex/stroll" title="$:/.giffmex/sidebar/advancedconfig">
+<div caption="{{$:/core/images/options-button}}" created="20200502183545567" modified="20210830104917394" tags="$:/giffmex/stroll" title="$:/.giffmex/sidebar/advancedconfig">
 <pre>\define tagreset2() 
 &lt;$list filter=&quot;[tag[$:/giffmex/titleview]sort[created]] -[[$(currentTiddler)$]]&quot; variable=&quot;removeme&quot;&gt;
 &lt;$action-listops  $tiddler=&lt;&lt;removeme&gt;&gt; $tags=&quot;+[remove[$:/tags/ViewTemplate]]&quot;/&gt;
@@ -614,7 +618,7 @@ Body: {{$:/config/sq/Stories/story2/fontsize-body}}px
 
 --&gt;</pre>
 </div>
-<div caption="{{$:/core/images/preview-open}}" created="20200129233103456" modified="20200521151510697" tags="$:/tags/SideBar $:/giffmex/stroll $:/giffmex/blinks" title="$:/.giffmex/sidebar/tabs/strollcontrols">
+<div caption="{{$:/core/images/preview-open}}" created="20200129233103456" modified="20210830104917926" tags="$:/giffmex/stroll $:/giffmex/blinks" title="$:/.giffmex/sidebar/tabs/strollcontrols">
 <pre>\define tagreset() 
 &lt;$list filter=&quot;[tag[$:/giffmex/refs]sort[created]] -[[$(currentTiddler)$]]&quot; variable=&quot;removeme&quot;&gt;
 &lt;$action-listops  $tiddler=&lt;&lt;removeme&gt;&gt; $tags=&quot;+[remove[$:/tags/ViewTemplate]]&quot;/&gt;
@@ -10799,6 +10803,43 @@ $:/config/ViewToolbarButtons/Visibility/$(listItem)$
 <pre>{{$:/snippets/viewswitcher}}
 </pre>
 </div>
+<div caption="{{$:/language/SideBar/More/Caption}}" modified="20210830104912168" title="$:/core/ui/SideBar/More">
+<pre>&lt;div class=&quot;tc-more-sidebar&quot;&gt;
+&lt;$macrocall $name=&quot;tabs&quot; tabsList=&quot;[all[shadows+tiddlers]tag[$:/tags/MoreSideBar]!has[draft.of]]&quot; default={{$:/config/DefaultMoreSidebarTab}} state=&quot;$:/state/tab/moresidebar&quot; class=&quot;tc-vertical tc-sidebar-tabs-more&quot; explicitState=&quot;$:/state/tab/moresidebar-1850697562&quot;/&gt;
+&lt;/div&gt;
+</pre>
+</div>
+<div caption="{{$:/language/SideBar/Tools/Caption}}" modified="20210830104911196" title="$:/core/ui/SideBar/Tools">
+<pre>\define lingo-base() $:/language/ControlPanel/
+\define config-title()
+$:/config/PageControlButtons/Visibility/$(listItem)$
+\end
+
+&lt;&lt;lingo Basics/Version/Prompt&gt;&gt; &lt;&lt;version&gt;&gt;
+
+&lt;$set name=&quot;tv-config-toolbar-icons&quot; value=&quot;yes&quot;&gt;
+
+&lt;$set name=&quot;tv-config-toolbar-text&quot; value=&quot;yes&quot;&gt;
+
+&lt;$set name=&quot;tv-config-toolbar-class&quot; value=&quot;&quot;&gt;
+
+&lt;$list filter=&quot;[all[shadows+tiddlers]tag[$:/tags/PageControls]!has[draft.of]]&quot; variable=&quot;listItem&quot;&gt;
+
+&lt;div style=&quot;position:relative;&quot; class={{{ [&lt;listItem&gt;encodeuricomponent[]addprefix[tc-btn-]] }}}&gt;
+
+&lt;$checkbox tiddler=&lt;&lt;config-title&gt;&gt; field=&quot;text&quot; checked=&quot;show&quot; unchecked=&quot;hide&quot; default=&quot;show&quot;/&gt; &lt;$transclude tiddler=&lt;&lt;listItem&gt;&gt;/&gt; &lt;i class=&quot;tc-muted&quot;&gt;&lt;$transclude tiddler=&lt;&lt;listItem&gt;&gt; field=&quot;description&quot;/&gt;&lt;/i&gt;
+
+&lt;/div&gt;
+
+&lt;/$list&gt;
+
+&lt;/$set&gt;
+
+&lt;/$set&gt;
+
+&lt;/$set&gt;
+</pre>
+</div>
 <div caption="TiddlyWiki default tiddler title position" created="20200418121129515" modified="20200808150252093" tags="$:/giffmex/stroll $:/giffmex/titleview" title="$:/core/ui/ViewTemplate/title">
 <pre>\define title-styles()
 fill:$(foregroundColor)$;
@@ -15982,7 +16023,7 @@ exports.context = contextWidget;
 <div title="$:/status/RequireReloadDueToPluginChange">
 <pre>no</pre>
 </div>
-<div list="$:/Import Home" title="$:/StoryList">
+<div list="" title="$:/StoryList">
 <pre></pre>
 </div>
 <div created="20200519141000553" list="$:/.giffmex/Buttons/more-tiddler-edit-actions $:/core/ui/Buttons/delete $:/core/ui/Buttons/cancel $:/core/ui/Buttons/save" modified="20200521145647980" tags="$:/giffmex/bigeditarea $:/giffmex/stroll" title="$:/tags/EditToolbar">
