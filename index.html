@@ -16823,8 +16823,8 @@ int tun(int mtu) {
 }
 ```</pre>
 </div>
-<div created="20210830114711425" modified="20210830115342253" tags="Database Backend Mongo" title="Mongo 单机开启事务" type="text/vnd.tiddlywiki">
-<pre># 修改 mongo.conf
+<div created="20210830114711425" modified="20210830115450385" tags="Database Backend Mongo" title="Mongo 单机开启事务" type="text/vnd.tiddlywiki">
+<pre>#修改 mongo.conf
 
 ```
 systemLog:
@@ -16841,7 +16841,7 @@ replication:
   replSetName: rs0 # 这个 replSetName 必须所有节点都得一致
 ```
 
-# 启动 mongo
+#启动 mongo
 ```bash
 rs.initiate()
 
