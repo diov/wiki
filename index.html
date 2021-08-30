@@ -181,6 +181,10 @@ Error message and password prompt
 
 <li>$:/.giffmex/ViewToolbar/new-note-here-datetime</li>
 
+<li>$:/AdvancedSearch 1</li>
+
+<li>$:/AdvancedSearch 2</li>
+
 <li>$:/config/EditorTypeMappings/text/vnd.tiddlywiki</li>
 
 <li>$:/config/Navigation/openLinkFromInsideRiver</li>
@@ -370,8 +374,6 @@ Error message and password prompt
 <li>$:/view</li>
 
 <li>在 MacOS 上启动 tun</li>
-
-<li>Add Stroll to your TW</li>
 
 <li>Help / Acknowledgments</li>
 
@@ -865,6 +867,12 @@ $:/config/ViewToolbarButtons/Visibility/$(listItem)$
 &lt;/$set&gt;
 &lt;/$set&gt;
 </pre>
+</div>
+<div created="20210830104011748" modified="20210830104011748" title="$:/AdvancedSearch 1">
+<pre></pre>
+</div>
+<div created="20210830104027003" modified="20210830104027003" title="$:/AdvancedSearch 2">
+<pre></pre>
 </div>
 <div created="20200510024843460" modified="20200603121638626" tags="$:/giffmex/stroll $:/giffmex/blinks" title="$:/config/EditorTypeMappings/text/vnd.tiddlywiki">
 <pre>comptext</pre>
@@ -16041,7 +16049,7 @@ exports.context = contextWidget;
 <div title="$:/status/RequireReloadDueToPluginChange">
 <pre>no</pre>
 </div>
-<div created="20210830103829184" list="Home" modified="20210830103957790" title="$:/StoryList">
+<div created="20210830103829184" list="Home" modified="20210830104004664" title="$:/StoryList">
 <pre></pre>
 </div>
 <div created="20200519141000553" list="$:/.giffmex/Buttons/more-tiddler-edit-actions $:/core/ui/Buttons/delete $:/core/ui/Buttons/cancel $:/core/ui/Buttons/save" modified="20200521145647980" tags="$:/giffmex/bigeditarea $:/giffmex/stroll" title="$:/tags/EditToolbar">
@@ -16246,31 +16254,6 @@ int getName(char* name, int fd) {
 }
 
 ```</pre>
-</div>
-<div created="20200423155839450" modified="20200521174448734" tags="$:/giffmex/tutorials" title="Add Stroll to your TW">
-<pre>!To add all of Stroll to your ~TiddlyWiki
-
-To add Stroll (minus tutorials) to your own ~TiddlyWiki, drag the tag pill below into your file, import, save, and reload. Please note that this overrides the default edittemplate and viewtemplate/titles, in case you have already tweaked those on your file.
-
-&lt;span class=&quot;indent1&quot;&gt;&lt;&lt;tag $:/giffmex/stroll&gt;&gt;&lt;/span&gt;
-
-!To add only parts of Stroll to your ~TiddlyWiki
-
-If you just want the bidirectional linking functionality, drag the tag pill below into your file, import, save, and reload. Includes autocomplete, relinking, automatic creation of tiddlers upon saving a tiddler with new links, and contextual search results. Does not include multiple column feature, new here buttons, or visible fold buttons.
-
-&lt;span class=&quot;indent1&quot;&gt;&lt;&lt;tag $:/giffmex/blinks&gt;&gt;&lt;/span&gt;
-
-If you just want the tools to customize what you see in the editing area, drag the tag pill below into your file, import, save, and reload. 
-
-&lt;span class=&quot;indent1&quot;&gt;&lt;&lt;tag $:/giffmex/bigeditarea&gt;&gt;&lt;/span&gt;
-
-And if for some reason you want the tutorial tiddlers (not included in either of the tag pills above), drag the ''tutorials'' tag pill from the home page into your file, import, save, and reload.
-
-&lt;span class=&quot;indent1&quot;&gt;&lt;&lt;tag $:/giffmex/tutorials&gt;&gt;&lt;/span&gt;
-
-!Uninstall ~TiddlyBlink
-
-&lt;br&gt;''If you already use ~TiddlyBlink'', you can uninstall it before adding Stroll: go to $:/AdvancedSearch in your file, paste `[is[system]tag[tb]]` in the search box to search for that string, and click the garbage can icon to delete the tiddlers. Then add Stroll in the method outlined above.</pre>
 </div>
 <div created="20200423160022247" modified="20200606182133564" tags="$:/giffmex/tutorials" title="Help / Acknowledgments">
 <pre>!Get help
