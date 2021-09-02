@@ -309,6 +309,10 @@ Error message and password prompt
 
 <li>$:/SiteTitle</li>
 
+<li>$:/state/advancedsearch/currentTab</li>
+
+<li>$:/state/advancedsearch/standard/currentTab</li>
+
 <li>$:/state/importpreviewtype</li>
 
 <li>$:/state/plugin-info--270617185-$:/themes/tiddlywiki/snowwhite</li>
@@ -320,6 +324,8 @@ Error message and password prompt
 <li>$:/state/ShowPaletteEditor</li>
 
 <li>$:/state/sidebar</li>
+
+<li>$:/state/tab--1498284803</li>
 
 <li>$:/state/tab--1576093819</li>
 
@@ -334,6 +340,8 @@ Error message and password prompt
 <li>$:/state/tab-2065006209</li>
 
 <li>$:/state/tab/moresidebar-1850697562</li>
+
+<li>$:/state/tab/search-results/advancedsearch</li>
 
 <li>$:/state/tab/search-results/sidebar</li>
 
@@ -13767,6 +13775,12 @@ exports.context = contextWidget;
 <div bag="default" created="20200414222832782" modified="20210830123633403" revision="0" title="$:/SiteTitle" type="text/vnd.tiddlywiki">
 <pre>Dio Roam</pre>
 </div>
+<div created="20210902131619042" modified="20210902131619042" title="$:/state/advancedsearch/currentTab">
+<pre>$:/core/ui/AdvancedSearch/Standard</pre>
+</div>
+<div created="20210902131620706" modified="20210902131620706" title="$:/state/advancedsearch/standard/currentTab">
+<pre>$:/plugins/danielo515/ContextPlugin/visualizer</pre>
+</div>
 <div created="20210830124343119" modified="20210830124405727" title="$:/state/importpreviewtype">
 <pre>$:/core/ui/ImportPreviews/TextRaw</pre>
 </div>
@@ -13784,6 +13798,9 @@ exports.context = contextWidget;
 </div>
 <div created="20210830125028868" modified="20210830161429566" title="$:/state/sidebar">
 <pre>yes</pre>
+</div>
+<div created="20210902131619043" modified="20210902131619043" title="$:/state/tab--1498284803">
+<pre>$:/core/ui/AdvancedSearch/Standard</pre>
 </div>
 <div created="20210902113635188" modified="20210902113635551" title="$:/state/tab--1576093819">
 <pre>$:/plugins/flibbles/relink/ui/TiddlerInfo/References</pre>
@@ -13806,6 +13823,9 @@ exports.context = contextWidget;
 <div created="20210902115002765" modified="20210902115012205" title="$:/state/tab/moresidebar-1850697562">
 <pre>$:/core/ui/MoreSideBar/Plugins</pre>
 </div>
+<div created="20210902131620707" modified="20210902131620707" title="$:/state/tab/search-results/advancedsearch">
+<pre>$:/plugins/danielo515/ContextPlugin/visualizer</pre>
+</div>
 <div created="20210902115151515" modified="20210902115151515" title="$:/state/tab/search-results/sidebar">
 <pre>$:/plugins/danielo515/ContextPlugin/visualizer</pre>
 </div>
@@ -13827,7 +13847,7 @@ exports.context = contextWidget;
 <div bag="default" revision="1" title="$:/status/UserName">
 <pre></pre>
 </div>
-<div created="20210902113614667" list="Inbox [[Inbox Macro]] [[Draft of 'New Tiddler']] Index" modified="20210902131553418" title="$:/StoryList">
+<div created="20210902113614667" list="$:/AdvancedSearch Inbox [[Inbox Macro]] [[Draft of 'New Tiddler']] Index" modified="20210902131603615" title="$:/StoryList">
 <pre></pre>
 </div>
 <div created="20200519141000553" list="$:/.giffmex/Buttons/more-tiddler-edit-actions $:/core/ui/Buttons/delete $:/core/ui/Buttons/cancel $:/core/ui/Buttons/save" modified="20200521145647980" tags="$:/giffmex/bigeditarea $:/giffmex/stroll" title="$:/tags/EditToolbar">
@@ -13983,7 +14003,7 @@ $:/tags/Macro</pre>
 <div created="20210831023052391" modified="20210831023105160" tags="Category" title="Inbox">
 <pre></pre>
 </div>
-<div created="20210902131058619" modified="20210902131523207" tags="$:/tags/Macro" title="Inbox Macro">
+<div created="20210902131058619" modified="20210902131640621" tags="$:/tags/Macro" title="Inbox Macro">
 <pre>\define InboxMacro(name:&quot;Bugs Bunny&quot; address:&quot;Rabbit Hole Hill&quot;)
 Hi, I'm $name$ and I live in $address$.
 \end
