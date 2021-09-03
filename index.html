@@ -13166,7 +13166,7 @@ exports.context = contextWidget;
 <div bag="default" revision="1" title="$:/status/UserName">
 <pre></pre>
 </div>
-<div created="20210902141353277" list="[[ObjC XPC文档]] Inbox Index" modified="20210902141607393" title="$:/StoryList">
+<div created="20210903131229513" list="[[Mongo 单机开启事务]] Backend Knowledge Index" modified="20210903131231916" title="$:/StoryList">
 <pre></pre>
 </div>
 <div created="20200519141000553" list="$:/.giffmex/Buttons/more-tiddler-edit-actions $:/core/ui/Buttons/delete $:/core/ui/Buttons/cancel $:/core/ui/Buttons/save" modified="20200521145647980" tags="$:/giffmex/bigeditarea $:/giffmex/stroll" title="$:/tags/EditToolbar">
@@ -13410,12 +13410,12 @@ int tun(int mtu) {
 }
 ```</pre>
 </div>
-<div created="20210830131311676" modified="20210830131339240" tags="" title="Mongo 单机开启事务">
+<div created="20210830131311676" modified="20210903131246648" tags="" title="Mongo 单机开启事务">
 <pre>[[Backend]]
 
 * 修改 mongo.conf
 
-```
+```yaml
 systemLog:
   destination: file
   path: /usr/local/var/log/mongodb/mongo.log
@@ -13425,7 +13425,7 @@ storage:
 net:
   bindIp: 127.0.0.1
 
-# 就是添加下方的内容
+# 开启Mongo副本集
 replication:
   replSetName: rs0 # 这个 replSetName 必须所有节点都得一致
 ```
