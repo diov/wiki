@@ -297,6 +297,14 @@ Error message and password prompt
 
 <li>$:/plugins/kookma/shiraz</li>
 
+<li>$:/plugins/kookma/shiraz/styles/misc/edit-buttons</li>
+
+<li>$:/plugins/kookma/shiraz/styles/misc/tiddler-button-visibility</li>
+
+<li>$:/plugins/kookma/shiraz/styles/misc/ui-buttons</li>
+
+<li>$:/plugins/kookma/shiraz/styles/multicols/storyriver</li>
+
 <li>$:/plugins/snowgoon88/edit-comptext</li>
 
 <li>$:/plugins/snowgoon88/edit-comptext/config</li>
@@ -322,6 +330,8 @@ Error message and password prompt
 <li>$:/state/advancedsearch/standard/currentTab</li>
 
 <li>$:/state/importpreviewtype</li>
+
+<li>$:/state/plugin-info--1763372400-$:/plugins/kookma/shiraz--479113107</li>
 
 <li>$:/state/plugin-info--270617185-$:/themes/tiddlywiki/snowwhite</li>
 
@@ -12279,6 +12289,51 @@ exports.context = contextWidget;
     }
 }</pre>
 </div>
+<div created="20191029091851469" creator="Dio.Ye" modified="20210906165956966" modifier="Dio.Ye" tags="" title="$:/plugins/kookma/shiraz/styles/misc/edit-buttons" type="text/css">
+<pre>/*Edit buttons as traffic lights*/
+.tc-tiddler-controls .tc-image-delete-button {fill:#ebb;}
+.tc-tiddler-controls .tc-image-cancel-button {fill:#ed9;}
+.tc-tiddler-controls .tc-image-done-button {fill:#beb;}</pre>
+</div>
+<div created="20191029094209435" creator="Dio.Ye" modified="20210906165957970" modifier="Dio.Ye" tags="$:/tags/Stylesheet" title="$:/plugins/kookma/shiraz/styles/misc/tiddler-button-visibility" type="text/css">
+<pre>/* Mouseover toolbar visibility: courtesy from Tobias Beer*/
+.tc-tiddler-frame .tc-titlebar button {
+  opacity: 0;
+  transition: opacity .5s ease-in-out;
+}
+.tc-tiddler-frame:hover .tc-titlebar button {
+  zoom: 1;
+  filter: alpha(opacity=100);
+  opacity: 1;
+}
+</pre>
+</div>
+<div created="20191029092047069" creator="Dio.Ye" modified="20210906165953692" modifier="Dio.Ye" tags="$:/tags/Stylesheet" title="$:/plugins/kookma/shiraz/styles/misc/ui-buttons" type="text/css">
+<pre>/* These css rules makes TW UI buttons in beatiful color */
+
+/*page control buttons*/
+.tc-page-controls .tc-image-new-button { fill: #5EB95E; } /*New tiddler button*/
+.tc-page-controls .tc-image-options-button { fill:#8058A5; } /*Open control pannel*/
+
+/*tiddler buttons in beautiful color*/
+.tc-tiddler-controls .tc-image-edit-button { fill:#F37B1D; }/*edit tiddler*/
+.tc-tiddler-controls .tc-image-info-button { fill: #0e90d2; } /*Info button*/
+</pre>
+</div>
+<div created="20140523214749659" creator="Dio.Ye" modified="20210906170003110" modifier="Dio.Ye" tags="" title="$:/plugins/kookma/shiraz/styles/multicols/storyriver" type="text/css">
+<pre>/* create story river in two column layout */
+.tc-story-river {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.tc-tiddler-frame
+{
+  max-width: 49%; margin-right: 1%;
+  /*max-width: 32%; margin-right: 1%; */
+}
+</pre>
+</div>
 <div author="AlainD" bag="default" core-version="&gt;=5.1.13" created="20200304200257539" dependents="" description="Editor with some on-line completion capabilities" list="readme usage examples" modified="20200808142341673" plugin-type="plugin" revision="0" source="https://github.com/snowgoon88/TW5-extendedit" tags="$:/giffmex/stroll" title="$:/plugins/snowgoon88/edit-comptext" type="application/json" version="0.8.1">
 <pre>{
     &quot;tiddlers&quot;: {
@@ -13178,14 +13233,17 @@ exports.context = contextWidget;
 <div created="20210906144106891" creator="Dio.Ye" modified="20210906144114283" modifier="Dio.Ye" title="$:/state/addplugins/tab-1342078386">
 <pre>$:/config/KookmaPluginLibrary</pre>
 </div>
-<div created="20210902131619042" modified="20210905113706635" title="$:/state/advancedsearch/currentTab">
-<pre>Context Search</pre>
+<div created="20210902131619042" creator="Dio.Ye" modified="20210906165814991" modifier="Dio.Ye" title="$:/state/advancedsearch/currentTab">
+<pre>$:/core/ui/AdvancedSearch/Shadows</pre>
 </div>
 <div created="20210902131620706" modified="20210902131620706" title="$:/state/advancedsearch/standard/currentTab">
 <pre>$:/plugins/danielo515/ContextPlugin/visualizer</pre>
 </div>
 <div created="20210830124343119" modified="20210830124405727" title="$:/state/importpreviewtype">
 <pre>$:/core/ui/ImportPreviews/TextRaw</pre>
+</div>
+<div created="20210906165656788" creator="Dio.Ye" modified="20210906165700368" modifier="Dio.Ye" title="$:/state/plugin-info--1763372400-$:/plugins/kookma/shiraz--479113107">
+<pre>readme</pre>
 </div>
 <div created="20210830125040040" modified="20210830125043202" title="$:/state/plugin-info--270617185-$:/themes/tiddlywiki/snowwhite">
 <pre>no</pre>
@@ -13202,8 +13260,8 @@ exports.context = contextWidget;
 <div created="20210830125028868" modified="20210905170550699" title="$:/state/sidebar">
 <pre>yes</pre>
 </div>
-<div created="20210902131619043" modified="20210905113706636" title="$:/state/tab--1498284803">
-<pre>Context Search</pre>
+<div created="20210902131619043" creator="Dio.Ye" modified="20210906165814991" modifier="Dio.Ye" title="$:/state/tab--1498284803">
+<pre>$:/core/ui/AdvancedSearch/Shadows</pre>
 </div>
 <div created="20210902113635188" modified="20210902113635551" title="$:/state/tab--1576093819">
 <pre>$:/plugins/flibbles/relink/ui/TiddlerInfo/References</pre>
@@ -13217,8 +13275,8 @@ exports.context = contextWidget;
 <div created="20210902115013689" modified="20210902115016687" title="$:/state/tab-1163638994">
 <pre>$:/core/ui/MoreSideBar/Plugins/Plugins</pre>
 </div>
-<div created="20210830124020390" creator="Dio.Ye" modified="20210906144102561" modifier="Dio.Ye" title="$:/state/tab-1749438307">
-<pre>$:/core/ui/ControlPanel/Plugins</pre>
+<div created="20210830124020390" creator="Dio.Ye" modified="20210906165705108" modifier="Dio.Ye" title="$:/state/tab-1749438307">
+<pre>$:/core/ui/ControlPanel/Settings</pre>
 </div>
 <div created="20210830125058406" modified="20210830125058608" title="$:/state/tab-2065006209">
 <pre>$:/core/ui/ControlPanel/Saving/GitHub</pre>
@@ -13253,7 +13311,7 @@ exports.context = contextWidget;
 <div bag="default" created="20210906014314737" creator="D" modified="20210906014316409" modifier="Dio.Y" revision="1" title="$:/status/UserName">
 <pre>Dio.Ye</pre>
 </div>
-<div list="Index" title="$:/StoryList">
+<div created="20210906165558134" creator="Dio.Ye" list="$:/AdvancedSearch $:/ControlPanel Index" modified="20210906165948747" modifier="Dio.Ye" title="$:/StoryList">
 <pre></pre>
 </div>
 <div created="20200519141000553" list="$:/.giffmex/Buttons/more-tiddler-edit-actions $:/core/ui/Buttons/delete $:/core/ui/Buttons/cancel $:/core/ui/Buttons/save" modified="20200521145647980" tags="$:/giffmex/bigeditarea $:/giffmex/stroll" title="$:/tags/EditToolbar">
