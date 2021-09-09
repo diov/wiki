@@ -1743,8 +1743,8 @@ To use in other wikis, drag and drop this link to those wikis: [[Kookma Plugin L
 <div bag="default" created="20200730040856198" creator="Dio.Ye" modified="20210907014148761" modifier="Dio.Ye" revision="0" tags="" title="$:/config/sq/Stories/storyRiverRatio" type="text/vnd.tiddlywiki">
 <pre>50</pre>
 </div>
-<div created="20210902131730168" modified="20210902131730168" title="$:/config/TextEditor/EditorHeight/Mode">
-<pre>fixed</pre>
+<div created="20210902131730168" creator="Dio.Ye" modified="20210909085355488" modifier="Dio.Ye" title="$:/config/TextEditor/EditorHeight/Mode">
+<pre>auto</pre>
 </div>
 <div created="20210905170516121" creator="Dio.Ye" modified="20210909081534972" modifier="Dio.Ye" title="$:/config/TextEditor/EnableToolbar">
 <pre>yes</pre>
@@ -14403,7 +14403,7 @@ int tun(int mtu) {
 
 &lt;&lt;Collect title:&quot;Obj-C XPC&quot; address:&quot;https://objccn.io/issue-14-4/&quot;&gt;&gt;</pre>
 </div>
-<div created="20210909075809851" creator="Dio.Ye" modified="20210909085217663" modifier="Dio.Ye" tags="[[OS X]]" title="OSX XPC 使用">
+<div created="20210909075809851" creator="Dio.Ye" modified="20210909085432638" modifier="Dio.Ye" tags="[[OS X]]" title="OSX XPC 使用">
 <pre>[[iOS/OS X]]
 
 &gt; OS X下特有的 IPC 方式，由`launchctl` 管理进程的生命周期
@@ -14414,7 +14414,6 @@ int tun(int mtu) {
 class Delegate: NSObject, NSXPCListenerDelegate {
     func listener(_ listener: NSXPCListener, shouldAcceptNewConnection newConnection: NSXPCConnection) -&gt; Bool { }
 }
-
 let listener: NSXPCListener
 listener.delegate = Delegate()
 listener.resume()
