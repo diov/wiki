@@ -13549,7 +13549,7 @@ frameborder=&quot;0&quot; width=&quot;100%&quot; height=&quot;600&quot;&gt;&lt;/
 <div created="20210831023111183" modified="20210831023120675" tags="Category" title="Knowledge">
 <pre></pre>
 </div>
-<div created="20210913124939096" creator="Dio.Ye" modified="20210913145205532" modifier="Dio.Ye" tags="[[OS X]]" title="LaunchDaemon/Agent 使用">
+<div created="20210913124939096" creator="Dio.Ye" modified="20210913145552532" modifier="Dio.Ye" tags="[[OS X]]" title="LaunchDaemon/Agent 使用">
 <pre>[[iOS/OS X]]
 
 ''LaunchDaemon'' 作用在Root下，''LaunchAgent''作用在Session下。可以配合[[OSX XPC 使用]]。
@@ -13584,9 +13584,7 @@ launchctl stop com.sample.app.helper
 &lt;/dict&gt;
 &lt;/plist&gt;
 ```
-此处需要配置主应用的 bundle id (`com.sample.app`)
-
-subject.OU 可以通过 `codesign -d -r- App.app` 获取
+此处需要配置添加、删除Helper的Client的信息，可以通过 `codesign -d -r- App.app` 获取
 
 * Helper 配置 ''Launchd.plist''
 
@@ -13637,7 +13635,7 @@ __launchd_plist
 	&lt;/dict&gt;
 &lt;/plist&gt;
 ```
-此处需要配置 Helper 的 bundle id (`com.sample.app.helper`)
+此处需要配置Helper的信息，可以通过 `codesign -d -r- com.sample.app.helper` 获取
 
 * SMJobBless 安装
 ```swift
