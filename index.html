@@ -423,6 +423,8 @@ Error message and password prompt
 
 <li>Launch Daemons and Agents</li>
 
+<li>LaunchDaemon/Agent 使用</li>
+
 <li>MacOS utun 操作</li>
 
 <li>Memory Models</li>
@@ -430,8 +432,6 @@ Error message and password prompt
 <li>New Tiddler</li>
 
 <li>OSX XPC 使用</li>
-
-<li>SMJobBless 安装 LaunchDaemon</li>
 
 <li>Tiddly 示例</li>
 
@@ -460,7 +460,7 @@ Error message and password prompt
 <div created="20200502183010768" modified="20201231113403988" tags="$:/giffmex/stroll" title="$:/_sq/Stories/config/Story2-storyview">
 <pre>classic</pre>
 </div>
-<div bag="default" created="20200425131030296" creator="Dio.Ye" current-tiddler="OSX XPC 使用" modified="20210913125031642" modifier="Dio.Ye" revision="0" title="$:/_sq/Stories/Story2HistoryList" type="application/json">
+<div bag="default" created="20200425131030296" creator="Dio.Ye" current-tiddler="OSX XPC 使用" modified="20210913125532527" modifier="Dio.Ye" revision="0" title="$:/_sq/Stories/Story2HistoryList" type="application/json">
 <pre>[
     {
         &quot;title&quot;: &quot;$:/config/Tiddlers/TitleLinks&quot;,
@@ -1109,10 +1109,16 @@ Error message and password prompt
             &quot;bottom&quot;: 287.1875,
             &quot;height&quot;: 17
         }
+    },
+    {
+        &quot;title&quot;: &quot;Draft of 'OSX XPC 使用' by Dio.Ye&quot;
+    },
+    {
+        &quot;title&quot;: &quot;OSX XPC 使用&quot;
     }
 ]</pre>
 </div>
-<div bag="default" created="20170615140314952" creator="Dio.Ye" list="[[OSX XPC 使用]]" modified="20210912111917160" modifier="Dio.Ye" revision="8" tags="$:/giffmex/stroll" title="$:/_sq/Stories/Story2StoryList" type="text/vnd.tiddlywiki">
+<div bag="default" created="20170615140314952" creator="Dio.Ye" list="" modified="20210912111917160" modifier="Dio.Ye" revision="8" tags="$:/giffmex/stroll" title="$:/_sq/Stories/Story2StoryList" type="text/vnd.tiddlywiki">
 <pre></pre>
 </div>
 <div created="20191010123116672" modified="20200714164402812" tags="$:/tags/Stylesheet $:/giffmex/stroll $:/giffmex/blinks" title="$:/.giffmex/.Stylesheet4Stroll" type="text/css">
@@ -13969,7 +13975,7 @@ exports.context = contextWidget;
 <div bag="default" created="20210906014314737" creator="D" modified="20210906014316409" modifier="Dio.Y" revision="1" title="$:/status/UserName">
 <pre>Dio.Ye</pre>
 </div>
-<div created="20210913125010637" creator="Dio.Ye" list="[[SMJobBless 安装 LaunchDaemon]] Index" modified="20210913125010637" modifier="Dio.Ye" title="$:/StoryList">
+<div created="20210913125010637" creator="Dio.Ye" list="[[LaunchDaemon/Agent 使用]] Index" modified="20210913131823986" modifier="Dio.Ye" title="$:/StoryList">
 <pre></pre>
 </div>
 <div created="20200519141000553" list="$:/.giffmex/Buttons/more-tiddler-edit-actions $:/core/ui/Buttons/delete $:/core/ui/Buttons/cancel $:/core/ui/Buttons/save" modified="20200521145647980" tags="$:/giffmex/bigeditarea $:/giffmex/stroll" title="$:/tags/EditToolbar">
@@ -14200,6 +14206,111 @@ frameborder=&quot;0&quot; width=&quot;100%&quot; height=&quot;600&quot;&gt;&lt;/
 
 &lt;&lt;Collect title:&quot;Mac OS X 的 Launch Daemon / Agent&quot; address:&quot;https://blog.yorkxin.org/posts/osx-launch-daemon-agent.html&quot;&gt;&gt;</pre>
 </div>
+<div created="20210913124939096" creator="Dio.Ye" modified="20210913131837008" modifier="Dio.Ye" tags="[[OS X]]" title="LaunchDaemon/Agent 使用">
+<pre>[[iOS/OS X]]
+
+''LaunchDaemon'' 作用在Root下，''LaunchAgent''作用在Session下。可以配合[[OSX XPC 使用]]。
+
+&gt; ''com.sample.app'': 主应用 bundle id
+&gt; ''com.sample.app.helper'': LaunchDaemon/LaunchAgent bundle id
+
+!! Manually 
+
+此处 ''com.sample.app.helper'' 是定义在plist中的label
+
+```bash
+launchctl load com.sample.app.helper.plist
+launchctl unload com.sample.app.helper.plist
+launchctl start com.sample.app.helper
+launchctl stop com.sample.app.helper
+```
+
+!! ServiceManager
+
+* Helper配置 ''Info.plist''
+```xml
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;!DOCTYPE plist PUBLIC &quot;-//Apple//DTD PLIST 1.0//EN&quot; &quot;http://www.apple.com/DTDs/PropertyList-1.0.dtd&quot;&gt;
+&lt;plist version=&quot;1.0&quot;&gt;
+&lt;dict&gt;
+	...
+	&lt;key&gt;SMAuthorizedClients&lt;/key&gt;
+	&lt;array&gt;
+		&lt;string&gt;anchor apple generic and identifier &amp;quot;com.sample.app&amp;quot; and (certificate leaf[field.1.2.840.113635.100.6.1.9] /* exists */ or certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = xxxxxxxx)&lt;/string&gt;
+	&lt;/array&gt;
+&lt;/dict&gt;
+&lt;/plist&gt;
+```
+此处需要配置主应用的 bundle id (`com.sample.app`)
+
+subject.OU 可以通过 `codesign -d -r- App.app` 获取
+
+* Helper 配置 ''Launchd.plist''
+
+```xml
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;!DOCTYPE plist PUBLIC &quot;-//Apple//DTD PLIST 1.0//EN&quot; &quot;http://www.apple.com/DTDs/PropertyList-1.0.dtd&quot;&gt;
+&lt;plist version=&quot;1.0&quot;&gt;
+&lt;dict&gt;
+	&lt;key&gt;Label&lt;/key&gt;
+	&lt;string&gt;com.sample.app.helper&lt;/string&gt;
+	&lt;key&gt;MachServices&lt;/key&gt;
+	&lt;dict&gt;
+		&lt;key&gt;com.sample.app.helper&lt;/key&gt;
+		&lt;true/&gt;
+	&lt;/dict&gt;
+&lt;/dict&gt;
+&lt;/plist&gt;
+```
+
+此处只能配置 ''Label'' 和 ''MachServices''
+
+* Helper 配置 ''Build Settings''
+Linking-Other Linker Flags
+
+```
+-sectcreate
+__TEXT
+__info_plist
+&quot;xxx/Info.plist&quot;
+-sectcreate
+__TEXT
+__launchd_plist
+&quot;xxx/Launchd.plist&quot;
+```
+
+* 主应用配置 ''Info.plist''
+
+```xml
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;!DOCTYPE plist PUBLIC &quot;-//Apple//DTD PLIST 1.0//EN&quot; &quot;http://www.apple.com/DTDs/PropertyList-1.0.dtd&quot;&gt;
+&lt;plist version=&quot;1.0&quot;&gt;
+&lt;dict&gt;
+	 ...
+	&lt;key&gt;SMPrivilegedExecutables&lt;/key&gt;
+	&lt;dict&gt;
+		&lt;key&gt;com.sample.app.helper&lt;/key&gt;
+		&lt;string&gt;anchor apple generic and identifier &amp;quot;com.sample.app.helper&amp;quot; and (certificate leaf[field.1.2.840.113635.100.6.1.9] /* exists */ or certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = V77MQ3VGTV)&lt;/string&gt;
+	&lt;/dict&gt;
+&lt;/plist&gt;
+```
+此处需要配置 Helper 的 bundle id (`com.sample.app.helper`)
+
+* SMJobBless 安装
+```swift
+var auth: AuthorizationRef?
+let status: OSStatus = AuthorizationCreate(nil, nil, [], &amp;auth)
+if status != errAuthorizationSuccess {
+        return nil
+}
+var error: Unmanaged&lt;CFError&gt;?
+let blessStatus = SMJobBless(kSMDomainSystemLaunchd, label as CFString, authorization, &amp;error)
+
+if !blessStatus {
+    print(&quot;Install LaunchLaemon failed: \(error!.takeUnretainedValue()).&quot;)
+}
+```</pre>
+</div>
 <div created="20210830131126334" creator="Dio.Ye" modified="20210909133000183" modifier="Dio.Ye" tags="[[OS X]] Network" title="MacOS utun 操作">
 <pre>[[iOS/OS X]]
 
@@ -14339,11 +14450,6 @@ let connection = NSXPCConnection(listenerEndpoint: endpoint) // B Process
 
 !!参考
 [[Obj-C XPC|https://www.objc.io/issues/14-mac/xpc/]]
-</pre>
-</div>
-<div created="20210913124939096" creator="Dio.Ye" modified="20210913125046605" modifier="Dio.Ye" tags="[[OS X]]" title="SMJobBless 安装 LaunchDaemon">
-<pre>[[OSX XPC 使用]]
-
 </pre>
 </div>
 <div created="20210906024111019" creator="Dio.Ye" modified="20210906115330333" modifier="Dio.Ye" tags="" title="Tiddly 示例">
